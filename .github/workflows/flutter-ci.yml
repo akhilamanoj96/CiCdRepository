@@ -1,0 +1,54 @@
+name: Flutter CI
+
+# Controls when the workflow is triggered.
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # 🚨 This is the critical step for iOS: must use a macOS runner
+    # The macOS runner has Xcode and the necessary tools pre-installed.
+    runs-on: macos-latest # Using 'macos-latest' for the newest available version
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4 # Use the latest version of checkout
+
+      - name: 🎯 Setup Flutter SDK
+        # This action automatically downloads and sets up the specified Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          # You can specify a version like '3.19.0' or use 'stable'
+          flutter-version: 'stable'
+
+      - name: 📥 Get Dependencies (flutter pub get)
+        run: flutter pub get
+
+      - name: 🔍 Check Formatting (Optional but recommended)
+        # Exits with a non-zero code if files need formatting
+        run: flutter format --set-exit-if-changed .
+
+      - name: 🧪 Run Unit and Widget Tests
+        # Runs all tests in the 'test' directory
+        run: flutter test
+
+      # --- BUILD STEPS FOR MAC/IOS ---
+
+      - name: 📱 Build Android APK (Debug)
+        # Verify that the Android build still works on the macOS runner
+        run: flutter build apk --debug
+
+      - name: 🍏 Build iOS/macOS (For verification, requires codesigning for release)
+        # This command creates an iOS archive (.ipa) for testing and distribution.
+        # NOTE: For actual deployment (e.g., to TestFlight/App Store), you will
+        # need to add steps for code signing using Apple certificates and secrets.
+        run: flutter build ipa --release
+
+      - name: 🌐 Build Web (Optional check)
+        run: flutter build web --release
