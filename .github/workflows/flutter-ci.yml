@@ -44,6 +44,12 @@ jobs:
         # Verify that the Android build still works on the macOS runner
         run: flutter build apk --debug
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+            name: app-apk
+            path: build/app/outputs/flutter-apk/app-debug.apk
+
       - name: 🍏 Build iOS/macOS (For verification, requires codesigning for release)
         # This command creates an iOS archive (.ipa) for testing and distribution.
         # NOTE: For actual deployment (e.g., to TestFlight/App Store), you will
