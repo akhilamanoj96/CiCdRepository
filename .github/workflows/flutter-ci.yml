@@ -25,7 +25,7 @@ jobs:
         with:
           channel: 'stable'
           # You can specify a version like '3.19.0' or use 'stable'
-          flutter-version: 'stable'
+          flutter-version: '3.35.7'
 
       - name: 📥 Get Dependencies (flutter pub get)
         run: flutter pub get
