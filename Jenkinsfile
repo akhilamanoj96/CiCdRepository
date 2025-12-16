@@ -4,7 +4,7 @@ pipeline {
     environment {
         ANDROID_SDK_ROOT = "/Users/akhilamanoj/Library/Android/sdk"
         FLUTTER_HOME  = "/Users/akhilamanoj/development/flutter_3.24.3/flutter"
-        PATH = "${env.PATH}:${FLUTTER_HOME}/bin"
+        PATH = "/Users/akhilamanoj/development/flutter_3.24.3/flutter/bin"
     }
 
     stages {
