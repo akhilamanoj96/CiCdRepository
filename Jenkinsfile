@@ -8,16 +8,16 @@ pipeline {
     }
 
     stages {
+
         stage('Any Stage') {
             steps {
-                withEnv(["PATH+EXTRA=${FLUTTER_HOME}/bin"]) {
-                    sh 'flutter doctor'
+                 withEnv(["PATH+EXTRA=${FLUTTER_HOME}/bin"]) {
+                 sh 'flutter doctor'
+                  }
                 }
             }
-        }
-    }
 
-    stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
