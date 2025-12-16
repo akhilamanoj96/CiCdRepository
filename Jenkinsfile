@@ -15,17 +15,11 @@ pipeline {
             }
         }
 
-        stages {
-                stage('Flutter Doctor') {
-                    steps {
-                        sh '''
-                          export PATH="$FLUTTER_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-                          flutter --version
-                          flutter doctor
-                        '''
-                    }
-                }
+        stage('Flutter Doctor') {
+            steps {
+                sh 'flutter doctor'
             }
+        }
 
         stage('Get Dependencies & Test') {
             steps {
