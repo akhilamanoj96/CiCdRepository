@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     environment {
-        ANDROID_SDK_ROOT = "/Users/akhilamanoj/Library/Android/sdk/tools/android/Sdk"
+        ANDROID_SDK_ROOT = "/Users/akhilamanoj/Library/Android/sdk"
+        FLUTTER_HOME  = "/Users/akhilamanoj/development/flutter_3.24.3/flutter"
         PATH = "$PATH:/Users/akhilamanoj/development/flutter_3.24.3/flutter/bin"
+
     }
 
     stages {
