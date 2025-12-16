@@ -35,11 +35,11 @@ pipeline {
         }
 
         // Optional: add iOS build if you use macOS + Xcode
-        // stage('Build iOS') {
-        //     steps {
-        //         sh 'flutter build ios --release --no-codesign'
-        //     }
-        // }
+        stage('Build iOS') {
+            steps {
+                sh 'flutter build ios --release --no-codesign'
+            }
+        }
     }
 
     post {
