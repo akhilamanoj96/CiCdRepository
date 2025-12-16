@@ -4,7 +4,17 @@ pipeline {
     environment {
         ANDROID_SDK_ROOT = "/Users/akhilamanoj/Library/Android/sdk"
         FLUTTER_HOME  = "/Users/akhilamanoj/development/flutter_3.24.3/flutter"
-        PATH = "/Users/akhilamanoj/development/flutter_3.24.3/flutter/bin"
+//         PATH = "/Users/akhilamanoj/development/flutter_3.24.3/flutter/bin"
+    }
+
+    stages {
+        stage('Any Stage') {
+            steps {
+                withEnv(["PATH+EXTRA=${FLUTTER_HOME}/bin"]) {
+                    sh 'flutter doctor'
+                }
+            }
+        }
     }
 
     stages {
