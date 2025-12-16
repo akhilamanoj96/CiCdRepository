@@ -4,6 +4,7 @@ pipeline {
     environment {
         ANDROID_SDK_ROOT = "/Users/akhilamanoj/Library/Android/sdk"
         FLUTTER_HOME  = "/Users/akhilamanoj/development/flutter_3.24.3/flutter"
+        PATH = "${env.PATH}:${FLUTTER_HOME}/bin"
     }
 
     stages {
@@ -14,6 +15,17 @@ pipeline {
                     credentialsId: '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'
             }
         }
+
+        stage('Debug PATH') {
+            steps {
+                sh 'echo $PATH'
+                sh 'which flutter'
+                sh 'flutter --version'
+            }
+        }
+
+
+
 
         stage('Flutter Doctor') {
             steps {
